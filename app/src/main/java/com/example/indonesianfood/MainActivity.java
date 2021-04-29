@@ -1,50 +1,50 @@
 package com.example.indonesianfood;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
-import java.util.ArrayList;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rvFoodSumatera, rvFoodJawa, rvFoodSulawesi;
-    private ArrayList<FoodJawa> listJawa = new ArrayList<>();
-    private ArrayList<FoodSumatera> listSumatera = new ArrayList<>();
-    private ArrayList<FoodSulawesi> listSulawesi = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvFoodSumatera = findViewById(R.id.rvFoodSumatera);
-        rvFoodJawa = findViewById(R.id.rvJawa);
-        rvFoodSulawesi = findViewById(R.id.rvSulawesi);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        bottomNav.setSelectedItemId(R.id.navHome);
 
-        rvFoodSumatera.setHasFixedSize(true);
-        rvFoodJawa.setHasFixedSize(true);
-        rvFoodSulawesi.setHasFixedSize(true);
-
-        listSumatera.addAll(FoodDataSumatera.getListData());
-        listJawa.addAll(FoodDataJawa.getListData());
-        listSulawesi.addAll(FoodDataSulawesi.getListData());
-
-        showRecyclerList();
-
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        }
     }
-    private void showRecyclerList() {
-        rvFoodSumatera.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        ListFoodSumateraAdapter listFoodSumateraAdapter = new ListFoodSumateraAdapter(listSumatera);
-        rvFoodSumatera.setAdapter(listFoodSumateraAdapter);
 
-        rvFoodJawa.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        ListFoodJawaAdapter listFoodJawaAdapter = new ListFoodJawaAdapter(listJawa);
-        rvFoodJawa.setAdapter(listFoodJawaAdapter);
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+            switch (item.getItemId()) {
+                case R.id.navHome:
+                    selectedFragment = new HomeFragment();
+                    break;
+                case R.id.navBookmark:
+                    selectedFragment = new BookmarkFragment();
+                    break;
+                case R.id.navShop:
+                    selectedFragment = new ShopFragment();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            return true;
+        }
+    };
 
-        rvFoodSulawesi.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        ListFoodSulawesiAdapter listFoodSulawesiAdapter = new ListFoodSulawesiAdapter(listSulawesi);
-        rvFoodSulawesi.setAdapter(listFoodSulawesiAdapter);
-    }
+
 }

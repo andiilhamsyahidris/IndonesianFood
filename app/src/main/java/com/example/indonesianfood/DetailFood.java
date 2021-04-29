@@ -17,12 +17,20 @@ public class DetailFood extends AppCompatActivity {
         TextView tvDesc = findViewById(R.id.tvDescDetail);
         ImageView ivPhoto = findViewById(R.id.imgDetailFood);
 
-        String name = getIntent().getStringExtra("name");
-        String desc = getIntent().getStringExtra("desc");
-        int photo = getIntent().getIntExtra("photo", 0);
+        FoodSumatera foodSumatera = getIntent().getParcelableExtra("foodSumatera_data");
+        FoodSulawesi foodSulawesi = getIntent().getParcelableExtra("foodSulawesi_data");
+        FoodJawa foodJawa = getIntent().getParcelableExtra("foodJawa_data");
 
-        ivPhoto.setImageResource(photo);
-        tvName.setText(name);
-        tvDesc.setText(desc);
+        tvName.setText(foodSumatera.getName());
+        tvDesc.setText(foodSumatera.getDesc());
+        ivPhoto.setImageResource(foodSumatera.getPhoto());
+
+        tvName.setText(foodSulawesi.getName());
+        tvDesc.setText(foodSulawesi.getDesc());
+        ivPhoto.setImageResource(foodSulawesi.getPhoto());
+
+        tvName.setText(foodJawa.getName());
+        tvDesc.setText(foodJawa.getDesc());
+        ivPhoto.setImageResource(foodJawa.getPhoto());
     }
 }

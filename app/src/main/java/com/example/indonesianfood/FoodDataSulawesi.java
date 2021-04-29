@@ -1,5 +1,7 @@
 package com.example.indonesianfood;
 
+import android.os.Parcel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -30,7 +32,7 @@ public class FoodDataSulawesi {
             "Sayur Putungo menjadi menu sederhana masyarakat Gorontalo dan menjadi ikon kuliner kota Gorontalo di mana terdapat cita rasa yang sangat pedas pada sayur ini. Sayur sederhana ini ternyata menjadi makanan utama di sana. Masyarakat setempat menyukai sayur yang pedas. Bila kurang suka dengan rasa pedas, Anda harus siap-siap menyediakan minum. Sebab tidak ada Sayur Putungo yang tidak pedas. \n" +
                     "Sayur Putungo bisa Anda temui di berbagai restoran yang tersebar di kota Gorontalo."
     };
-    static Collection<? extends FoodSulawesi> getListData() {
+    public static ArrayList<FoodSulawesi> getListData() {
         ArrayList<FoodSulawesi> list = new ArrayList<>();
         for (int position = 0; position < foodNames.length; position++) {
             FoodSulawesi food = new FoodSulawesi();
@@ -40,5 +42,5 @@ public class FoodDataSulawesi {
             list.add(food);
         }
         return list;
-    };
+    }
 }

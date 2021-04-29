@@ -1,6 +1,5 @@
 package com.example.indonesianfood;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,12 @@ public class ListFoodSumateraAdapter extends RecyclerView.Adapter<ListFoodSumate
 
     public ListFoodSumateraAdapter(ArrayList<FoodSumatera> list) {
         this.listFood = list;
+    }
+
+    private OnItemClickCallback onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
     }
 
     @NonNull
@@ -36,11 +41,7 @@ public class ListFoodSumateraAdapter extends RecyclerView.Adapter<ListFoodSumate
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent  = new Intent(holder.itemView.getContext(), DetailFood.class);
-                intent.putExtra("name", foodSumatera.getName());
-                intent.putExtra("photo", foodSumatera.getPhoto());
-                intent.putExtra("desc", foodSumatera.getDesc());
-                holder.itemView.getContext().startActivity(intent);
+                onItemClickCallback.onItemClicked(listFood.get(holder.getBindingAdapterPosition()));
             }
         });
     }
@@ -60,5 +61,8 @@ public class ListFoodSumateraAdapter extends RecyclerView.Adapter<ListFoodSumate
             tvName = itemView.findViewById(R.id.foodName);
             tvDesc = itemView.findViewById(R.id.foodDesc);
         }
+    }
+    public interface OnItemClickCallback {
+        void onItemClicked(FoodSumatera data);
     }
 }

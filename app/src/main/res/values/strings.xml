@@ -3,4 +3,9 @@
     <string name="foodSumatera">Makanan Sumatera</string>
     <string name="foodJawa">Makanan Jawa</string>
     <string name="foodSulawesi">Makanan Sulawesi</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="home">Home</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="shop">Shop</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.indonesianfood;
 
+import android.os.Parcel;
+
 import java.util.ArrayList;
 
 public class FoodDataSumatera {
@@ -31,7 +33,7 @@ public class FoodDataSumatera {
                     "jambu sebagai pelengkap. Soto Padang memiliki cita rasa gurih yang berasal dari kaldu sapi. Selain itu, soto ini juga disajikan\n" +
                     "bersama dengan soun dan irisan tomat. Untuk menambah kelezatannya, Anda juga bisa menambahkan irisan jeruk nipis."
     };
-    static ArrayList<FoodSumatera> getListData() {
+    public static ArrayList<FoodSumatera> getListData() {
         ArrayList<FoodSumatera> list = new ArrayList<>();
         for (int position = 0; position < foodNames.length; position++) {
             FoodSumatera food = new FoodSumatera();

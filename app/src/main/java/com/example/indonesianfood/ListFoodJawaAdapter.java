@@ -19,6 +19,12 @@ public class ListFoodJawaAdapter extends RecyclerView.Adapter<ListFoodJawaAdapte
         this.listFood = list;
     }
 
+    private OnItemClickCallback onItemClickCallback;
+
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
+
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -36,11 +42,7 @@ public class ListFoodJawaAdapter extends RecyclerView.Adapter<ListFoodJawaAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent  = new Intent(holder.itemView.getContext(), DetailFood.class);
-                intent.putExtra("name", foodJawa.getName());
-                intent.putExtra("photo", foodJawa.getPhoto());
-                intent.putExtra("desc", foodJawa.getDesc());
-                holder.itemView.getContext().startActivity(intent);
+                onItemClickCallback.onItemClicked(listFood.get(holder.getBindingAdapterPosition()));
             }
         });
     }
@@ -60,5 +62,8 @@ public class ListFoodJawaAdapter extends RecyclerView.Adapter<ListFoodJawaAdapte
             tvName = itemView.findViewById(R.id.foodName);
             tvDesc = itemView.findViewById(R.id.foodDesc);
         }
+    }
+    public interface OnItemClickCallback {
+        void onItemClicked(FoodJawa data);
     }
 }

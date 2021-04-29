@@ -1,5 +1,7 @@
 package com.example.indonesianfood;
 
+import android.os.Parcel;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -31,7 +33,7 @@ public class FoodDataJawa {
                     "sejenis timun khas Jawa Timur), bengkuang, mangga muda, nanas, kedondong, kemudian ditambah lontong, tahu, tempe, bendoyo, cingur, serta sayuran seperti kecambah/taoge, kangkung, dan kacang panjang.",
             "Mi letheg atau Mi Lethek, adalah salah satu kuliner mie yang berasal dari Srandakan, Bantul, Yogyakarta dengan menggunakan bahan dasar tepung tapioka dan singkong."
     };
-    static Collection<? extends FoodJawa> getListData() {
+    public static ArrayList<FoodJawa> getListData() {
         ArrayList<FoodJawa> list = new ArrayList<>();
         for (int position = 0; position < foodNames.length; position++) {
             FoodJawa food = new FoodJawa();
